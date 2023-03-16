@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}" th:with="activeTab='register'">
+<head>
+  <title>Registration Success</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+  <div class="container">
+    <h1>Registration Successful</h1>
+    <br/>
+    <p>Congratulations - you've successfully registered your account for the shop</p>
+    <p>Please click below to start shopping</p>
+    <a class="btn btn-primary" th:href="@{/items}">View items</a>
+  </div>
+</div>
+</body>

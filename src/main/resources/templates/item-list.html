@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}" th:with="activeTab='items'">
+<head>
+  <title>Items For Sale</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+  <div class="container">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Item Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:if="${items.empty}">
+        <td>0</td>
+      </tr>
+      <tr th:each="item : ${items}">
+        <th scope="row" th:text="${item.id}"></th>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.description}"></td>
+        <td>
+          <form method="post" th:action="@{'/cart/add/' + ${item.id}}">
+            <input type="submit" class="btn btn-primary btn-medium" value="Add"/>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}" th:with="activeTab='cart'">
+<head>
+  <title>Shopping cart</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+  <div class="container">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Item Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:if="${cartItems.empty}">
+        <td>0</td>
+      </tr>
+      <tr th:each="cartItem : ${cartItems}">
+        <th scope="row" th:text="${cartItem.itemId}"></th>
+        <td th:text="${cartItem.item.name}"></td>
+        <td th:text="${cartItem.item.description}"></td>
+        <td th:text="${cartItem.amount}"></td>
+        <td>
+          <form method="post" th:action="@{'/cart/add/' + ${cartItem.itemId}}">
+            <input type="submit" class="btn btn-primary btn-small" value="+"/>
+          </form>
+        </td>
+        <td>
+          <form method="get" th:action="@{'/cart/decrease/' + ${cartItem.id}}">
+            <input type="hidden" th:value="${cartItem.amount}" th:name="amount">
+            <input type="submit" class="btn btn-primary btn-small" value="-"/>
+          </form>
+        </td>
+        <td>
+          <form method="get" th:action="@{'/cart/remove/' + ${cartItem.id}}">
+            <input type="submit" class="btn btn-primary btn-small" value="Remove"/>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>

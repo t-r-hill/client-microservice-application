@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}" th:with="activeTab='register'">
+<head>
+  <title>Registration Failed</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+  <div class="container">
+    <h1>Registration Failed</h1>
+    <br/>
+    <p>Something went wrong with your registration...</p>
+    <p>Please click below to try again</p>
+    <a class="btn btn-primary" th:href="@{/register}">Register</a>
+  </div>
+</div>
+</body>
